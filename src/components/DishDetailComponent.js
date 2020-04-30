@@ -31,12 +31,12 @@ class DishDetail extends Component {
 
 
             return (
-                // <div  className="col-12 col-md-5 m-1">
-                <Card>
+                <div  className="col-12 col-md-5 m-1">
+                <Card >
                     <h4>Comments</h4>
                     <div>{comms}</div>
                     </Card>
-                // </div>
+                 </div>
                     
             );
         }
@@ -51,15 +51,15 @@ class DishDetail extends Component {
         if (dish != null) {
             return (
 
-                //<div  className="col-12 col-md-5 m-1">
-                <Card>
+                <div  className="col-12 col-md-5 m-1">
+                <Card >
                     <CardImg width="100%" top src={dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
                     </CardBody>
                 </Card>
-               // </div>
+                </div>
                 
             );
         }
@@ -74,13 +74,10 @@ class DishDetail extends Component {
         const dish = this.props.selectedDish;
 
         return (
-            <div className="container">
                 <div className="row">
                     {this.RenderDish(dish)}
                     {this.RenderComments(dish)}
-
                 </div>
-            </div>
         );
     }
 }
