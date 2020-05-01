@@ -32,10 +32,10 @@ class DishDetail extends Component {
 
             return (
                 <div  className="col-12 col-md-5 m-1">
-                <Card >
+                
                     <h4>Comments</h4>
                     <div>{comms}</div>
-                    </Card>
+                    
                  </div>
                     
             );
