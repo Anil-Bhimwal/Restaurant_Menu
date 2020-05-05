@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
-    Card, CardImg, CardImgOverlay, CardText, CardBody,
+    Card, CardImg, CardText, CardBody,
     CardTitle
 } from 'reactstrap';
 class DishDetail extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+
 
     RenderComments(dish) {
 
@@ -31,13 +29,13 @@ class DishDetail extends Component {
 
 
             return (
-                <div  className="col-12 col-md-5 m-1">
-                
+                <div className="col-12 col-md-5 m-1">
+
                     <h4>Comments</h4>
                     <div>{comms}</div>
-                    
-                 </div>
-                    
+
+                </div>
+
             );
         }
         else {
@@ -51,16 +49,16 @@ class DishDetail extends Component {
         if (dish != null) {
             return (
 
-                <div  className="col-12 col-md-5 m-1">
-                <Card >
-                    <CardImg width="100%" top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                <div className="col-12 col-md-5 m-1">
+                    <Card >
+                        <CardImg width="100%" top src={dish.image} alt={dish.name} />
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
                 </div>
-                
+
             );
         }
         else {
@@ -71,19 +69,21 @@ class DishDetail extends Component {
 
     }
     render() {
-        const dish = this.props.selectedDish;
+        const dish = this.props.dish;
 
         return (
+            <div className="container">
                 <div className="row">
                     {this.RenderDish(dish)}
                     {this.RenderComments(dish)}
                 </div>
+            </div>
         );
     }
 }
 export default DishDetail;
 
-//  React, { Component } from 'react';
+// import React, { Component } from 'react';
 // import { Card, CardImg, CardText, CardBody,
 //     CardTitle } from 'reactstrap';
 // class DishDetail extends Component {
@@ -138,17 +138,21 @@ export default DishDetail;
 //     }
 
 //     render (){
-//         const dish = this.props.selectedDish
+//         const dish = this.props.selectedDish;
 //         if (dish == null) {
+//             console.log("null dish hai ");
 //             return (<div></div>)
 //         }
 //         const dishItem = this.renderDish(dish)
 //         const commentItem = this.renderComments(dish.comments)
 //     return(
-//         <div className='row'>
-//             {dishItem}
-//             {commentItem}
+//         <div className="container">
+//             <div className='row'>
+//                 {dishItem}
+//                 {commentItem}
+//             </div>
 //         </div>
+        
 //     );
 //     }
 // }
