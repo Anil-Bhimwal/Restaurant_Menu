@@ -33,7 +33,7 @@ function RenderDish({ dish }) {
         return <div></div>;
     }
 }
-function RenderComment({ comments }) {
+function RenderComments({ comments, addComment, dishId }) {
     return comments ? (
         <>
             {comments.map((comment) => {
@@ -52,7 +52,7 @@ function RenderComment({ comments }) {
                     </div>
                 );
             })}
-            <CommentForm />
+            <CommentForm dishId={dishId} addComment={addComment} />
         </>
     ) : null;
 }
@@ -78,7 +78,10 @@ const DishDetail = (props) => {
                 </div>
                 <div className="col-12 col-md-5 m-1">
                     {props.dish && <h4>Comments</h4>}
-                    <RenderComment comments={props.comments} />
+                    <RenderComments comments={props.comments}
+                        addComment={props.addComment}
+                        dishId={props.dish.id}
+                    />
                 </div>
             </div>
         </div>
@@ -104,8 +107,9 @@ class CommentForm extends Component {
 
     handleSubmit = (values) => {
         this.toggleForm();
-        console.log("Current state is :" + JSON.stringify(values));
-        alert("Current state is :" + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        // console.log("Current state is :" + JSON.stringify(values));
+        // alert("Current state is :" + JSON.stringify(values));
     };
 
     render() {
@@ -148,16 +152,16 @@ class CommentForm extends Component {
                                     </Col>
                                 </Row>
                                 <Row className="group-form">
-                                    <Label htmlFor="yourname" md={3}>
+                                    <Label htmlFor="author" md={3}>
                                         Your Name
                   </Label>
                                 </Row>
                                 <Row className="form-group">
                                     <Col md={12}>
                                         <Control.text
-                                            model=".yourname"
-                                            id="yourname"
-                                            name="yourname"
+                                            model=".author"
+                                            id="author"
+                                            name="author"
                                             placeholder="Your Name"
                                             className="form-control"
                                             validators={{
@@ -168,7 +172,7 @@ class CommentForm extends Component {
                                         />
                                         <Errors
                                             className="text-danger"
-                                            model=".yourname"
+                                            model=".author"
                                             show="touched"
                                             messages={{
                                                 required: "Required",
@@ -179,16 +183,16 @@ class CommentForm extends Component {
                                     </Col>
                                 </Row>
                                 <Row className="group-form">
-                                    <Label htmlFor="message" md={3}>
+                                    <Label htmlFor="comment" md={3}>
                                         Comment
                   </Label>
                                 </Row>
                                 <Row className="form-group">
                                     <Col md={12}>
                                         <Control.textarea
-                                            model=".messagea"
-                                            id="message"
-                                            name="message"
+                                            model=".comment"
+                                            id="comment"
+                                            name="comment"
                                             rows="6"
                                             className="form-control"
                                         />
