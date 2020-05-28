@@ -35,7 +35,7 @@ function RenderDish({ dish }) {
         return <div></div>;
     }
 }
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({comments, postComment, dishId}) {
     return comments ? (
         <>
             {comments.map((comment) => {
@@ -54,7 +54,7 @@ function RenderComments({ comments, addComment, dishId }) {
                     </div>
                 );
             })}
-            <CommentForm dishId={dishId} addComment={addComment} />
+            <CommentForm dishId={dishId} postComment={postComment} />
         </>
     ) : null;
 }
@@ -100,7 +100,7 @@ const DishDetail = (props) => {
                     <div className="col-12 col-md-5 m-1">
                         {props.dish && <h4>Comments</h4>}
                         <RenderComments comments={props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             dishId={props.dish.id}
                         />
                     </div>
@@ -128,7 +128,7 @@ class CommentForm extends Component {
 
     handleSubmit = (values) => {
         this.toggleForm();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
         // console.log("Current state is :" + JSON.stringify(values));
         // alert("Current state is :" + JSON.stringify(values));
     };
